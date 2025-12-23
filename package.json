@@ -1,0 +1,37 @@
+{
+  "name": "auto-snap",
+  "version": "1.0.0",
+  "description": "An intelligent, local file history & snapshot manager designed to protect your code from accidental loss.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/auto-snap.js start",
+    "history": "node bin/auto-snap.js history",
+    "restore": "node bin/auto-snap.js restore",
+    "clear": "node bin/auto-snap.js clear",
+    "init": "node bin/auto-snap.js init"
+  },
+  "bin": {
+    "auto-snap": "./bin/auto-snap.js"
+  },
+  "keywords": [
+    "snapshot",
+    "backup",
+    "history",
+    "local",
+    "git",
+    "auto-save",
+    "file-watcher"
+  ],
+  "author": "S.Shanmukha Sai Reddy",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "chokidar": "^3.6.0",
+    "commander": "^14.0.2",
+    "diff": "^8.0.2",
+    "diff-match-patch": "^1.0.5",
+    "fs-extra": "^11.3.2"
+  }
+}
