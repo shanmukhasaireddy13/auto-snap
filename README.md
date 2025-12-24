@@ -58,11 +58,43 @@ autosnap history
 
 **Detailed Tree View:**
 ```bash
-autosnap history src/server.js
+auto-snap history src/server.js
+```
+**Example Output:**
+```
+Snapshot History for "sai.txt":
+
+File: sai.txt
+----------------------------------------------------------------------------------------------------------------------------------
+| Snapshot ID     | Parent          | Timestamp                      | Size (Raw)   | Stats      | Type
+----------------------------------------------------------------------------------------------------------------------------------
+| mjjygyjp        | mjjye8t9        | 24/12/2025, 5:23:50 pm         | 150.84 MB    | +680400 | VERSION (HEAD)
+| mjjye8t9        | mjjyd5nv        | 24/12/2025, 5:21:43 pm         | 13.71 MB     | +63180 | VERSION 
+| mjjyd5nv        | mjjycj68        | 24/12/2025, 5:20:52 pm         | 1003.01 KB   | +4590 | VERSION 
+| mjjycj68        | mjjybv0k        | 24/12/2025, 5:20:23 pm         | 55.72 KB     | +180 | VERSION 
+| mjjybv0k        | mjjyb66p        | 24/12/2025, 5:19:52 pm         | 18.57 KB     | +61 -1 | VERSION 
+| mjjyb66p        | mjjya8bv        | 24/12/2025, 5:19:20 pm         | 6.19 KB      | +15 | VERSION 
+| mjjya8bv        | mjibpjwi        | 24/12/2025, 5:18:36 pm         | 3.09 KB      | +12 | VERSION 
+| mjibpjwi        | mjib5c22        | 23/12/2025, 1:58:53 pm         | 74 B         | +2 | VERSION 
+| mjibg8id        | mjibfwk9        | 23/12/2025, 1:51:38 pm         | 44 B         | +1 -1 | VERSION 
+| mjibfwk9        | mjibellx        | 23/12/2025, 1:51:23 pm         | 10 B         | +1 -8 | VERSION 
+| mjibellx        | mjib5c22        | 23/12/2025, 1:50:22 pm         | 247 B        | +7 | VERSION 
+| mjib5c22        | -               | 23/12/2025, 1:43:10 pm         | 29 B         |            | ROOT 
+----------------------------------------------------------------------------------------------------------------------------------
+
+Tip: Use the 'Snapshot ID' (first column) to restore. Example: npm run restore mjjygyjp
+
+----------------------------------------------------------------------------------------------------------------------------------
+Storage Efficiency Overview:
+Current File Size:        150.84 MB
+Hypothetical Total Size:  165.62 MB  (Sum of all 12 versions)
+Actual Storage (.snap):   2.64 KB
+Total Saved:              165.61 MB (100.0%)
+----------------------------------------------------------------------------------------------------------------------------------
 ```
 *   **Snapshot ID**: (First Column) Key used for restoration.
-*   **Tree Structure**: Visualizes parent-child relationships.
-*   **(HEAD)**: Your current working version.
+*   **Size (Raw)**: The full size of that version if stored normally.
+*   **Efficiency**: Shows how much space Auto-Snap is saving you.
 
 ### 3. Restore in Time
 Travel back safely. This updates the file in your workspace and "pivots" the history tree to that version.
