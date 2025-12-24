@@ -142,6 +142,8 @@ async function readSnapHistory(rootDir, relPath) {
     const buffer = await fs.readFile(snapPath);
     const snapData = JSON.parse((await brotliDecompress(buffer)).toString());
 
+    const stat = await fs.stat(snapPath);
+
     // Get Current Content for Watcher
     const currentContent = reconstructContent(snapData, snapData.c);
 
@@ -149,8 +151,49 @@ async function readSnapHistory(rootDir, relPath) {
     return {
         currentId: snapData.c,
         currentContent: currentContent,
-        raw: snapData
+        raw: snapData,
+        diskSize: stat.size
     };
+}
+
+// Calculate the total size if all versions were stored as full raw files
+function calculateTotalRawSize(snapData) {
+    let totalBytes = 0;
+    const sizes = {}; // Map ID -> Byte Size
+    const cache = {}; // Cache content by ID to avoid re-computing
+
+    // 1. Identify Nodes
+    const nodes = Object.keys(snapData.i);
+    if (nodes.length === 0) return { total: 0, sizes: {} };
+
+    // Use a memoized reconstructor simple for this calculation
+    const getContent = (id) => {
+        if (cache[id]) return cache[id];
+
+        const node = snapData.i[id];
+        let content = '';
+
+        if (node.b !== undefined) {
+            content = node.b;
+        } else if (node.p) {
+            const parentContent = getContent(node.p);
+            const patches = dmp.patch_fromText(node.d);
+            const [newContent] = dmp.patch_apply(patches, parentContent);
+            content = newContent;
+        }
+
+        cache[id] = content;
+        return content;
+    };
+
+    for (const id of nodes) {
+        const content = getContent(id);
+        const size = Buffer.byteLength(content, 'utf8');
+        sizes[id] = size;
+        totalBytes += size;
+    }
+
+    return { total: totalBytes, sizes };
 }
 
 // Helper to record deletions (optional implementation)
@@ -163,5 +206,6 @@ module.exports = {
     createSnapshot,
     restoreSnapshot,
     readSnapHistory,
-    recordDeletion
+    recordDeletion,
+    calculateTotalRawSize
 };
