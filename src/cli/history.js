@@ -98,7 +98,7 @@ async function history(filePattern) {
                     console.log(chalk.gray('\n----------------------------------------------------------------------------------------------------------------------------------'));
                     console.log(chalk.bold.magenta('Storage Efficiency Overview:'));
                     console.log(`Current File Size:        ${formatBytes(currentSize)}`);
-                    console.log(`Hypothetical Total Size:  ${formatBytes(totalRawSize)}  (Sum of all ${allNodes.length} versions)`);
+                    console.log(`Total Uncompressed Size:  ${formatBytes(totalRawSize)}  (Sum of Current + All Past Versions)`);
                     console.log(`Actual Storage (.snap):   ${formatBytes(diskSize)}`);
                     console.log(chalk.green(`Total Saved:              ${formatBytes(savingsBytes)} (${savingsPercent}%)`));
                     console.log(chalk.gray('----------------------------------------------------------------------------------------------------------------------------------'));
