@@ -1,10 +1,10 @@
 
 <div align="center">
 
-# a u t o - s n a p
+# a u t o s n a p
 ### Intelligent Local File History & Protection in Time
 
-[![NPM Version](https://img.shields.io/npm/v/auto-snap?style=flat-square&color=blue)](https://www.npmjs.com/package/auto-snap)
+[![NPM Version](https://img.shields.io/npm/v/autosnap?style=flat-square&color=blue)](https://www.npmjs.com/package/autosnap)
 [![License](https://img.shields.io/badge/license-ISC-green?style=flat-square)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-win%20|%20mac%20|%20linux-lightgrey?style=flat-square)]()
 
@@ -12,7 +12,7 @@
 
 ---
 
-**Auto-Snap** is a lightweight, background service that automatically watches your code for changes and creates **intelligent snapshots**, allowing you to travel back in time to any version of any file.
+**Autosnap** is a lightweight, background service that automatically watches your code for changes and creates **intelligent snapshots**, allowing you to travel back in time to any version of any file.
 
 Think of it as a local, granular Time Machine for your code—working silently to protect your work from accidental deletion or bad edits.
 
@@ -31,10 +31,10 @@ Think of it as a local, granular Time Machine for your code—working silently t
 
 ## 📦 Installation
 
-Install globally via NPM to use the `auto-snap` CLI anywhere:
+Install globally via NPM to use the `autosnap` CLI anywhere:
 
 ```bash
-npm install -g auto-snap
+npm install -g autosnap
 ```
 
 ---
@@ -44,21 +44,21 @@ npm install -g auto-snap
 ### 1. Start Watching
 Go to your project directory and start the background watcher.
 ```bash
-auto-snap start
+autosnap start
 ```
-> **Note:** Auto-Snap automatically ignores `node_modules`, `.git`, `dist`, and other noisy folders.
+> **Note:** Autosnap automatically ignores `node_modules`, `.git`, `dist`, and other noisy folders.
 
 ### 2. View History
 See a summary of all tracked files or deep-dive into a specific file's timeline.
 
 **Summary View:**
 ```bash
-auto-snap history
+autosnap history
 ```
 
 **Detailed Tree View:**
 ```bash
-auto-snap history src/server.js
+autosnap history src/server.js
 ```
 *   **Snapshot ID**: (First Column) Key used for restoration.
 *   **Tree Structure**: Visualizes parent-child relationships.
@@ -68,19 +68,19 @@ auto-snap history src/server.js
 Travel back safely. This updates the file in your workspace and "pivots" the history tree to that version.
 
 ```bash
-auto-snap restore <SNAPSHOT_ID>
+autosnap restore <SNAPSHOT_ID>
 ```
-*Example:* `auto-snap restore mjibpjwi`
+*Example:* `autosnap restore mjibpjwi`
 
 ### 4. Other Commands
-*   `auto-snap stop`: Stop the background process.
-*   `auto-snap clear`: **RESET** all history (Irreversible!).
-*   `auto-snap settings`: Open the config file.
+*   `autosnap stop`: Stop the background process.
+*   `autosnap clear`: **RESET** all history (Irreversible!).
+*   `autosnap settings`: Open the config file.
 
 ---
 
 ## ⚙️ Configuration
-A `.auto-snap/config.json` is created in your project root.
+A `.autosnap/config.json` is created in your project root.
 
 ```json
 {
@@ -93,10 +93,10 @@ A `.auto-snap/config.json` is created in your project root.
 
 ## 🧩 Architecture
 
-Auto-Snap uses a modern **Forward-Delta Architecture**:
+Autosnap uses a modern **Forward-Delta Architecture**:
 1.  **Root Node**: Stores the full initial file content.
 2.  **Child Nodes**: Store only the *patches* (diffs) required to recreate the file from the parent.
-3.  **Storage**: All data is compressed (Brotli) and stored in succinct `.snap` files in `.auto-snap/store/`.
+3.  **Storage**: All data is compressed (Brotli) and stored in succinct `.snap` files in `.autosnap/store/`.
 
 ---
 

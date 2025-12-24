@@ -6,10 +6,10 @@ const packageJson = require('../package.json');
 
 program
     .version(packageJson.version)
-    .description('Auto-Snap: Intelligent Local File History');
+    .description('Autosnap: Intelligent Local File History');
 
 program.command('init')
-    .description('Initialize Auto-Snap in the current directory')
+    .description('Initialize Autosnap in the current directory')
     .action(require('../src/cli/init'));
 
 program.command('start')

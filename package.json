@@ -1,18 +1,18 @@
 {
-  "name": "auto-snap",
+  "name": "autosnap",
   "version": "1.0.0",
   "description": "An intelligent, local file history & snapshot manager designed to protect your code from accidental loss.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bin/auto-snap.js start",
-    "history": "node bin/auto-snap.js history",
-    "restore": "node bin/auto-snap.js restore",
-    "clear": "node bin/auto-snap.js clear",
-    "init": "node bin/auto-snap.js init"
+    "start": "node bin/autosnap.js start",
+    "history": "node bin/autosnap.js history",
+    "restore": "node bin/autosnap.js restore",
+    "clear": "node bin/autosnap.js clear",
+    "init": "node bin/autosnap.js init"
   },
   "bin": {
-    "auto-snap": "./bin/auto-snap.js"
+    "autosnap": "./bin/autosnap.js"
   },
   "keywords": [
     "snapshot",
